@@ -1,0 +1,46 @@
+* USERCOMMAND -
+    USERCOMMAND - the USER_COMMAND function code (FC) is used
+    to capture user actions or interactions  with the graphical
+    user interface (GUI) elements. These actions can include
+    pressing function keys, clicking buttons,  selecting menu
+    items, or any other user-initiated event within an ABAP
+    program.
+* FC ( FUNCTION CODE ) -
+   In SAP ABAP, `FC1` is a specific function code that represents
+    the action of pressing the F1 key on the keyboard.
+    When a user presses the F1 key, `FC1` is set in `SY-UCOMM` system field to indicate this action.
+    This allows the ABAP program to recognize that the has
+    requested help and respond such as displaying help information
+    or invoking a function.
+* CASE SY-UCOMM -
+    Think of SY-UCOMM as a special message board inside an
+    ABAP program. Whenever a user does something, like clicking
+    a button or pressing a key, SY-UCOMM gets updated with a code
+    that represents that action. The program then checks this
+    message board to see what the user did and responds accordingly.
+    It's like the program's way of understanding  what the user
+    wants to do next.
+
+* CONCATENATE:
+    SYNTAX -
+     "CONCATENATE S1 S2 INTO MSG SEPERATED BY SPACE"
+       MSG IS VARIABLE DECLARED
+
+
+  The CONCATENATE statement is used to combine multiple text
+  strings or variables into a single string. In this case, STR1
+  and STR2 are concatenated together to form the message MSG, with
+   a space separating them. So, MSG will contain the text "THE DIFF OF
+   2 NO IS" followed by the value of Z.
+
+* MESSAGE:
+   SYNTAX -
+     MESSAGE MSG TYPE 'I'.
+       I REPRESENTS DATATYPE INTEGER.
+       MSG IS VARAIBLE NAME.
+
+ The MESSAGE statement is used to display a message to the
+ user during program execution. Here, the concatenated message MSG is
+ displayed as an informative message (TYPE 'I'). This message will
+ Typically appear in a dialog box or at the bottom of the screen,
+ depending on the SAP GUI configuration.
