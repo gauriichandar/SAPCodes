@@ -1,0 +1,85 @@
+DATA: v_str1 type string,
+      v_str2 type string,
+      v_msg type string,
+      v_pos type i,
+      v_len type i.
+DATA: v_z type i.
+
+
+selection-screen begin of block bk1 with frame title t1.
+selection-screen begin of line.
+  selection-screen comment 8(20) lb1.
+ parameters px type i default 20.
+selection-screen end of line.
+
+
+selection-screen begin of line.
+  selection-screen comment 8(20) lb2.
+ parameters py type i default 15.
+selection-screen end of line.
+
+
+selection-screen end of block bk1.
+
+selection-screen begin of block bk2 with frame title t2.
+
+parameters: p_r1 radiobutton group g1 user-command fc1,
+            p_r2 radiobutton group g1,
+            p_r3 radiobutton group g1,
+            p_r4 radiobutton group g1,
+            p_r5 radiobutton group g1.
+  selection-screen end of block bk2.
+
+
+  initialization.
+  lb1 ='Enter first num'.
+  lb2 ='Enter second num'.
+  t1 = 'Input fields'.
+  t2 = 'Arithmetic operations'.
+
+
+
+  AT selection-screen on radiobutton group g1.
+    case sy-ucomm.
+      when 'FC1'.
+
+        if p_r1 = 'X'.
+          v_z = px + py.
+          v_str1 = 'The sum of two number is'.
+          v_str2 = v_z.
+
+          clear v_msg.
+          concatenate v_str1 v_str2 into v_msg separated by space.
+          message v_msg type 'I'.
+
+
+        elseif p_r2 = 'X'.
+          v_z = px - py.
+
+          v_str1 = 'The diff of two number is'.
+          v_str2 = v_z.
+
+          clear v_msg.
+          concatenate v_str1 v_str2 into v_msg separated by space.
+          message v_msg type 'I'.
+
+        elseif p_r3 = 'X'.
+          v_z = px * py.
+          v_str1 = 'The product of two number is'.
+          v_str2 = v_z.
+
+          clear v_msg.
+          concatenate v_str1 v_str2 into v_msg separated by space.
+          message v_msg type 'I'.
+
+        elseif p_r4 = 'X'.
+          v_z = px / py.
+          v_str1 = 'The division of two number is'.
+          v_str2 = v_z.
+
+          clear v_msg.
+          concatenate v_str1 v_str2 into v_msg separated by space.
+          message v_msg type 'I'.
+
+          endif.
+          endcase.
