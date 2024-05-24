@@ -1,0 +1,31 @@
+types: begin of emp,
+  empno type i,
+  emp_ename(20) type c,
+  emp_edesig(20) type c,
+  end of emp.
+
+  data: tmp type sorted table of emp with non-unique key empno,
+         wa_emp type emp.
+
+  clear wa_emp.
+  wa_emp-empno = 1.
+  wa_emp-emp_ename = 'Zack'.
+  wa_emp-emp_edesig = 'Manager'.
+  insert wa_emp into table tmp.
+
+  clear wa_emp.
+  wa_emp-empno = 1.
+  wa_emp-emp_ename = 'ISHIKA'.
+  wa_emp-emp_edesig = 'Director'.
+  insert wa_emp into table tmp.
+
+  clear wa_emp.
+  wa_emp-empno = 4.
+  wa_emp-emp_ename = 'Tina'.
+  wa_emp-emp_edesig = 'Employee'.
+  insert wa_emp into table tmp.
+
+  uline.
+  loop at tmp into wa_emp.
+    write:/ wa_emp-empno, wa_emp-emp_ename, wa_emp-emp_edesig.
+   endloop.
