@@ -1,0 +1,51 @@
+DATA: V_X TYPE I value 20,
+      V_Y TYPE I value 10.
+
+WRITE:/ 'ISHIKA'.
+PERFORM SUB1.
+uline.
+WRITE:/'JUNGKOOK'.
+PERFORM SUB1.
+uline.
+WRITE:/ 'JIMIN'.
+PERFORM SUB1.
+uline.
+
+
+PERFORM SUB2 USING V_X V_Y.
+
+
+uline.
+data: v_r1 type i,
+      v_r2 type i.
+perform sub3 using v_x v_y changing v_r1 v_r2.
+
+write:/ 'SUM is', v_r1,
+        'difference is', v_r2.
+
+form sub1.
+write:/'student'.
+write:/' SCOE'.
+endform.
+
+form sub2 using v_x v_y.
+  data: c type i,
+        d type i.
+clear: c,d.
+        c = v_x + v_y.
+        d = v_x - v_y.
+       write:/ 'Sum is',c.
+       write:/ 'Diff is',d.
+
+    endform.
+
+form sub3 using v_x v_y changing m1 m2.
+  data: k1 type i,
+         k2 type i.
+  k1 = v_x.
+  k2 = v_y.
+  m1 = k1 + k2.
+  m2 = k1 - k2.
+  write:/ 'The sum is',m1.
+  write:/ 'The diff is',m2.
+  endform.
