@@ -1,0 +1,94 @@
+*&---------------------------------------------------------------------*
+*& Report ZHASHED_TABLE
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZHASHED_TABLE.
+
+types: begin of emp,
+  empno type i,
+  emp_ename(20) type c,
+  emp_edesig(20) type c,
+  end of emp.
+
+  data: tmp type HASHED table of  emp with unique key empno,
+         wa_emp type emp.
+
+  clear wa_emp.
+  wa_emp-empno = 1.
+  wa_emp-emp_ename = 'Zack'.
+  wa_emp-emp_edesig = 'Manager'.
+  insert wa_emp into table tmp.
+
+  clear wa_emp.
+  wa_emp-empno = 5.
+  wa_emp-emp_ename = 'Mina'.
+  wa_emp-emp_edesig = 'Director'.
+  insert wa_emp into table tmp.
+
+  clear wa_emp.
+  wa_emp-empno = 4.
+  wa_emp-emp_ename = 'Tina'.
+  wa_emp-emp_edesig = 'Employee'.
+  insert wa_emp into table tmp.
+
+clear wa_emp.
+  wa_emp-empno = 22.
+  wa_emp-emp_ename = 'Tom'.
+  wa_emp-emp_edesig = 'Teacher'.
+  insert wa_emp into table tmp.
+
+clear wa_emp.
+  wa_emp-empno = 6.
+  wa_emp-emp_ename = 'Sam'.
+  wa_emp-emp_edesig = 'Manager'.
+  insert wa_emp into table tmp.
+
+clear wa_emp.
+  wa_emp-empno = 8.
+  wa_emp-emp_ename = 'Dina'.
+  wa_emp-emp_edesig = 'Student'.
+  insert wa_emp into table tmp.
+
+  loop at tmp into wa_emp.
+    write:/ wa_emp-empno, wa_emp-emp_ename, wa_emp-emp_edesig.
+   endloop.
+
+
+  uline.
+  write:/ 'Display details with emp name Tina'.
+  read table tmp into wa_emp with key emp_ename = 'Tina'.
+    if sy-subrc eq 0.
+      write:/ wa_emp-empno, wa_emp-emp_ename, wa_emp-emp_edesig.
+      else.
+        write:/ 'No record found'.
+endif.
+
+
+ uline.
+ write:/ 'Display details with designation of Director'.
+  read table tmp into wa_emp with key emp_edesig = 'Director'.
+    if sy-subrc eq 0.
+      write:/ wa_emp-empno, wa_emp-emp_ename, wa_emp-emp_edesig.
+      else.
+        write:/ 'No record found'.
+endif.
+
+
+ uline.
+ write:/ 'Display details with emp name Zack'.
+  read table tmp into wa_emp with key emp_ename = 'Zack'.
+    if sy-subrc eq 0.
+      write:/ wa_emp-empno, wa_emp-emp_ename, wa_emp-emp_edesig.
+      else.
+        write:/ 'No record found'.
+endif.
+
+ uline.
+ write:/ 'Display details with emp no 5'.
+  read table tmp into wa_emp with key empno = 5.
+    if sy-subrc eq 0.
+      write:/ wa_emp-empno, wa_emp-emp_ename, wa_emp-emp_edesig.
+      else.
+        write:/ 'No record found'.
+endif.
